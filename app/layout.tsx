@@ -24,7 +24,7 @@ export default function RootLayout({
             <Sidebar adminName={"Kohei Dashboard"} logoImage={"/images/logo.webp"} profileImage={"/images/my-profile.webp"} name={"Kohei"} info={"developper"} />
             <div className={"w-[75%] space-y-4"}>
               <Header />
-              <div className={"h-[85%] border border-[#B3B3B3] overflow-y-scroll rounded-xl my-5 mr-3 "}>
+              <div className={"h-[85%] border border-[#B3B3B3] hidden-scrollbar overflow-y-scroll rounded-xl my-5 mr-3 "}>
                 {children}
               </div>
             </div>

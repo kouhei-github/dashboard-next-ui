@@ -30,7 +30,7 @@ export const Sidebar = (props: Props) => {
           </div>
         </div>
 
-        <div className={"text-[#8F8F8F] h-[60vh] overflow-y-scroll"}>
+        <div className={"text-[#8F8F8F] h-[60vh] hidden-scrollbar overflow-y-scroll"}>
           <Menu />
         </div>
 
