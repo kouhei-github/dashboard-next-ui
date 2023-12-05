@@ -1,9 +1,12 @@
-import Image from 'next/image'
+"use client"
 
 export default function Home() {
+
+
   return (
-      <div className={"flex items-center justify-center"}>
-        Test
+      <div className={"text-white"}>
+        test
       </div>
+
   )
 }
