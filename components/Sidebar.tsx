@@ -31,7 +31,7 @@ export const Sidebar = (props: Props) => {
           <div className={"text-left "}>
             {sidebarCtx.open ?
               <>
-                <p className={" font-bold text-lg"}>{props.adminName}</p>
+                <p className={" font-bold text-lg"}>{props.name}</p>
                 <p className={"text-[#5E5E5E] text-[13px]"}>{props.info}</p>
               </>
             : <></>}
