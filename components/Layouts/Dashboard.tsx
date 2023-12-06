@@ -12,7 +12,7 @@ export default function Dashboard({children}: { children: React.ReactNode }) {
         <SideBarContext.Provider value={sidebarCtx} >
           <Sidebar adminName={"Kohei Dashboard"} logoImage={"/images/logo.webp"} profileImage={"/images/my-profile.webp"} name={"Kohei"} info={"developper"} />
         </SideBarContext.Provider>
-        <div className={`w-[75%] space-y-4 ${sidebarCtx.open ? "w-[75%]" : "w-full"}`}>
+        <div className={`space-y-4 ${sidebarCtx.open ? "md:w-[75%] w-full" : "w-full"}`}>
           <SideBarContext.Provider value={sidebarCtx} >
             <Header />
           </SideBarContext.Provider>
