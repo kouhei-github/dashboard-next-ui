@@ -20,7 +20,7 @@ type Props = {
 export const Sidebar = (props: Props) => {
   const sidebarCtx = useContext(SideBarContext)
   return (
-    <div className={`bg-black z-20 md:h-[95vh] ease-in-out duration-[600ms] ${sidebarCtx.open ? "md:w-[25%] w-[70%] h-[100vh] md:relative fixed top-0 border-r border-[#B3B3B3] md:px-10 px-5 pt-3 md:pt-7" : "w-[0%]"}`}>
+    <div className={`bg-black z-20 md:h-[95vh] ease-in-out duration-[600ms] ${sidebarCtx.open ? "md:w-[25%] w-[70%] h-[100vh] md:relative fixed top-0 left-0 border-r border-[#B3B3B3] md:px-10 px-5 pt-3 md:pt-7" : "w-[0%]"}`}>
       <Accordion>
         <div className={"flex items-center space-x-4 mb-10"}>
           <Image src={props.logoImage} width={60} height={60} alt={"ロゴ"} className={"object-cover rounded-full"} />

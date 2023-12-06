@@ -7,8 +7,8 @@ export default function Dashboard({children}: { children: React.ReactNode }) {
   const sidebarCtx = useSideBarContext()
 
   return (
-    <div className={"w-full h-[100vh] bg-black text-white md:p-6 pr-6 py-6"}>
-      <div className={"flex h-full space-x-4 md:border border-y border-r rounded-xl"}>
+    <div className={"w-full h-[100vh] bg-black text-white p-6 "}>
+      <div className={"flex h-full space-x-4 border rounded-xl"}>
         <SideBarContext.Provider value={sidebarCtx} >
           <Sidebar adminName={"Kohei Dashboard"} logoImage={"/images/logo.webp"} profileImage={"/images/my-profile.webp"} name={"Kohei"} info={"developper"} />
         </SideBarContext.Provider>
