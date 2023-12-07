@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Components */
+
 @layer utilities {
     .hidden-scrollbar {
         -ms-overflow-style: none; /* IE, Edge 対応 */
@@ -12,3 +14,4 @@
         display: none;
     }
 }
+
