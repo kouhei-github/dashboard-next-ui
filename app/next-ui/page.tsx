@@ -1,6 +1,6 @@
 "use client"
 import "../styles/_culc_app.scss"
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 
 type logic = "-" | "+" | "x" | "÷" | "=" | "c" | "nothing"
 
@@ -35,8 +35,8 @@ export default function Home() {
 
     setEvaluate(result)
     setAnswer(eval(result.slice(0,-1)))
-
   }
+
 
 
   return (
@@ -48,7 +48,7 @@ export default function Home() {
             <div className="stripe"></div>
           </div>
           <div className="result">
-          <p className={"text-2xl text-white"}>{answer}</p>
+          <p className={"text-2xl text-white"}>{typing === "" ? answer : typing}</p>
           </div>
           <div className="button-container">
             <div className="logo-container">
