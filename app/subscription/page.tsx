@@ -5,7 +5,7 @@ import {ChangeEvent, useState} from 'react'
 
 const currentYear = new Date().getFullYear()
 
-export default function subscription() {
+export default function Subscription() {
   const [number, setNumber] = useState('');
   const [holder, setHolder] = useState('Name on card');
   const [month, setMonth] = useState('MM');
