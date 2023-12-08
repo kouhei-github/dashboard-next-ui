@@ -5,6 +5,11 @@ import {ChangeEvent, useState} from 'react'
 
 const currentYear = new Date().getFullYear()
 
+const initCardHolder: {class: string, innerHtml: string}[] = []
+for (let i = 0; i < 16; i++) {
+  initCardHolder.push({class: "", innerHtml: "#"},)
+}
+
 export default function Subscription() {
   const [number, setNumber] = useState('');
   const [holder, setHolder] = useState('Name on card');
@@ -13,11 +18,6 @@ export default function Subscription() {
   const [cvv, setCvv] = useState('');
   const [cvvFocus, setCvvFocus] = useState(false);
   const [highlight, setHighlight] = useState('');
-
-  const handleNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setNumber(event.target.value);
-    setHighlight('highlight__number');
-  };
 
   const handleHolderChange = (event: ChangeEvent<HTMLInputElement>) => {
     setHolder(event.target.value);
@@ -29,10 +29,35 @@ export default function Subscription() {
   };
 
   const [card, setCard] = useState<string>("card")
-  const handleNumberFocus = (className: string) => {
-    setCard(card.replaceAll("flip", ""))
+  const handleNumberFocus = (className: string, flip=true) => {
+    setCard(flip ? card.replaceAll("flip", "") : "flip card")
     setHighlight(className)
   }
+
+  const [cardNumberClass, setCardNumberClass] = useState<{class: string, innerHtml: string}[]>(initCardHolder)
+  const [enteredCardNumbers, setEnteredCardNumbers] = useState<number>(0)
+  const handleNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value
+
+    if(enteredCardNumbers > value.length) {
+      let newArr = [...cardNumberClass];
+      newArr[15 - (15 - value.length)] = {class: "", innerHtml: "#"}
+      setCardNumberClass(newArr)
+    } else {
+      if(value.length > 4 && value.length < 13) {
+        let newArr = [...cardNumberClass];
+        newArr[value.length - 1] = {class: "filed", innerHtml: "*"}
+        setCardNumberClass(newArr)
+      } else {
+        let newArr = [...cardNumberClass];
+        newArr[value.length - 1] = {class: "filed", innerHtml: value.slice(-1)}
+        setCardNumberClass(newArr)
+      }
+    }
+
+    setEnteredCardNumbers(value.length)
+    setNumber(value)
+  };
 
   return (
       <>
@@ -46,15 +71,15 @@ export default function Subscription() {
                      viewBox="-96 -98.908 832 593.448">
                   <defs id="defs879">
                   </defs>
-                  <path id="rect887" display="inline" fill="#ff5f00" stroke-width="5.494" d="M224.833 42.298h190.416v311.005H224.833z"/>
-                  <path id="path889" d="M244.446 197.828a197.448 197.448 0 0175.54-155.475 197.777 197.777 0 100 311.004 197.448 197.448 0 01-75.54-155.53z" fill="#eb001b" stroke-width="5.494"/>
-                  <path id="path891" d="M621.101 320.394v-6.372h2.747v-1.319h-6.537v1.319h2.582v6.373zm12.691 0v-7.69h-1.978l-2.307 5.493-2.308-5.494h-1.977v7.691h1.428v-5.823l2.143 5h1.483l2.143-5v5.823z" className="e" fill="#f79e1b" stroke-width="5.494"/>
-                  <path id="path893" d="M640 197.828a197.777 197.777 0 01-320.015 155.474 197.777 197.777 0 000-311.004A197.777 197.777 0 01640 197.773z" className="e" fill="#f79e1b" stroke-width="5.494"/>
+                  <path id="rect887" display="inline" fill="#ff5f00" strokeWidth="5.494" d="M224.833 42.298h190.416v311.005H224.833z"/>
+                  <path id="path889" d="M244.446 197.828a197.448 197.448 0 0175.54-155.475 197.777 197.777 0 100 311.004 197.448 197.448 0 01-75.54-155.53z" fill="#eb001b" strokeWidth="5.494"/>
+                  <path id="path891" d="M621.101 320.394v-6.372h2.747v-1.319h-6.537v1.319h2.582v6.373zm12.691 0v-7.69h-1.978l-2.307 5.493-2.308-5.494h-1.977v7.691h1.428v-5.823l2.143 5h1.483l2.143-5v5.823z" className="e" fill="#f79e1b" strokeWidth="5.494"/>
+                  <path id="path893" d="M640 197.828a197.777 197.777 0 01-320.015 155.474 197.777 197.777 0 000-311.004A197.777 197.777 0 01640 197.773z" className="e" fill="#f79e1b" strokeWidth="5.494"/>
                 </svg>
               </div>
               <div id="card_number" className="card__number">
-                {Array.from({length: 16}, (_, index) => (
-                    <span key={index}>#<br/></span>
+                {Array.from( {length: 16}, (_, index) => (
+                    <span key={index} className={cardNumberClass[index].class}>{cardNumberClass[index].innerHtml}<br/></span>
                 ))}
               </div>
               <div className="card__footer">
@@ -91,14 +116,14 @@ export default function Subscription() {
             <div>
               <label htmlFor="expiration_month">Expiration Date</label>
                 <div className="filed__date">
-                  <select id="expiration_month" onFocus={() => handleNumberFocus("highlight__expire")} onChange={(event) => setMonth(event.target.value)}>
-                    <option selected disabled>Month</option>
+                  <select id="expiration_month" value={month} onFocus={() => handleNumberFocus("highlight__expire")} onChange={(event) => setMonth(event.target.value)}>
+                    <option disabled>Month</option>
                     {Array.from({length: 12}, (_, index) => (
                         <option key={index}>{String(index+1).length === 1 ? `0${index+1}` : index+1}</option>
                     ) )}
                   </select>
-                  <select id="expiration_year" onFocus={() => handleNumberFocus("highlight__expire")} onChange={(event) => setYear(event.target.value)}>
-                    <option selected disabled>Year</option>
+                  <select id="expiration_year" value={year} onFocus={() => handleNumberFocus("highlight__expire")} onChange={(event) => setYear(event.target.value)}>
+                    <option disabled>Year</option>
                     {Array.from({length: currentYear+9 - currentYear+1}, (_, index) => (
                         <option key={index}>{index + currentYear}</option>
                     ))}
@@ -111,7 +136,7 @@ export default function Subscription() {
                   id="cvv"
                   type="number"
                   value={cvv}
-                  onFocus={() => handleNumberFocus("highlight__cvv")}
+                  onFocus={() => handleNumberFocus("highlight__cvv", false)}
                   onBlur={() => handleNumberFocus("hidden")}
                   onChange={(event) => handleCvvChange(event)}/>
             </div>
