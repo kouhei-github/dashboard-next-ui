@@ -39,7 +39,7 @@ export const Menu = () => {
       yourTeam: [
         {name: "Next UI", href: "/next-ui",component: <BsBarChartSteps  size={25} color={"white"} />},
         {name: "Tailwind Variants", href: "/tailwind",component: <SiAmazonredshift  size={25} color={"white"} />},
-        {name: "Next UI Pro", href: "/next-ui-pro",component: <GiProgression  size={25} color={"white"} />},
+        {name: "Subscription", href: "/subscription",component: <GiProgression  size={25} color={"white"} />},
       ]
     }
   }, [])
