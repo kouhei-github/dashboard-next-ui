@@ -64,8 +64,8 @@ export default function Subscription() {
         <main>
           <section id="card" className={card}>
             <div id="highlight" className={highlight}></div>
-            <section className="card__front">
-              <div className="card__header">
+            <section className="card--front">
+              <div className="card--header">
                 <div>CreditCard</div>
                 <svg xmlns="http://www.w3.org/2000/svg" height="40" width="60" id="svg895" version="1.1"
                      viewBox="-96 -98.908 832 593.448">
@@ -77,27 +77,27 @@ export default function Subscription() {
                   <path id="path893" d="M640 197.828a197.777 197.777 0 01-320.015 155.474 197.777 197.777 0 000-311.004A197.777 197.777 0 01640 197.773z" className="e" fill="#f79e1b" strokeWidth="5.494"/>
                 </svg>
               </div>
-              <div id="card_number" className="card__number">
+              <div id="card_number" className="card--number">
                 {Array.from( {length: 16}, (_, index) => (
                     <span key={index} className={cardNumberClass[index].class}>{cardNumberClass[index].innerHtml}<br/></span>
                 ))}
               </div>
-              <div className="card__footer">
-                <div className="card__holder">
-                  <div className="card__section__title">Card Holder</div>
+              <div className="card--footer">
+                <div className="card--holder">
+                  <div className="card--section--title">Card Holder</div>
                   <div id="card_holder">{holder}</div>
                 </div>
                 <div className="card__expires">
-                  <div className="card__section__title">Expires</div>
+                  <div className="card--section--title">Expires</div>
                   <span id="card_expires_month">{month}</span>/<span id="card_expires_year">{year.slice( -2 )}</span>
                 </div>
               </div>
             </section>
-            <section className="card__back">
-              <div className="card__hide_line"></div>
-              <div className="card_cvv">
+            <section className="card--back">
+              <div className="card--hide-line"></div>
+              <div className="card-cvv">
                 <span>CVV</span>
-                <div className={`card_cvv_field ${cvvFocus ? 'flip' : ''}`}>{Array( cvv.length + 1 ).join( "*" )}
+                <div className={`card-cvv-field ${cvvFocus ? 'flip' : ''}`}>{Array( cvv.length + 1 ).join( "*" )}
               </div>
             </div>
           </section>
@@ -112,10 +112,10 @@ export default function Subscription() {
             <label htmlFor="holder">Card Holder</label>
             <input id="holder" type="text" value={holder} onFocus={() => handleNumberFocus("highlight__holder")} onChange={(event) => handleHolderChange(event)} />
           </div>
-          <div className="filed__group">
+          <div className="filed--group">
             <div>
               <label htmlFor="expiration_month">Expiration Date</label>
-                <div className="filed__date">
+                <div className="filed--date">
                   <select id="expiration_month" value={month} onFocus={() => handleNumberFocus("highlight__expire")} onChange={(event) => setMonth(event.target.value)}>
                     <option disabled>Month</option>
                     {Array.from({length: 12}, (_, index) => (
