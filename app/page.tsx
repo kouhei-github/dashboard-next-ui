@@ -1,11 +1,13 @@
-"use client"
+import styles from './styles/styles.module.css'
 
 export default function Home() {
 
 
   return (
       <div className={"text-white"}>
-        <h1>test</h1>
+        <div className={"text-center"}>
+          <button className={styles.button}/>
+        </div>
       </div>
 
   )
